@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">YouthWorkHub</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="find_side_hustle_title">Check out the easiest way to find a side hustle!</string>
+    <string name="find_side_hustle_desc">If you\'re a student, job seeker or just looking to make some extra cash, you\'re in the right place.</string>
+    <string name="post_job_title">YouthWorkHub is also the perfect place to post a vacancy!</string>
+    <string name="post_job_desc">If you have things to be done, here you can find a person to do them for you.</string>
+    <string name="welcome3_title">Weather you\'re looking for the perfect candidate or for the perfect job YouthWorkHub has you covered!</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_confirm_password">Confirm password</string>
+    <string name="prompt_email">Email</string>
+    <string name="action_log_in">Log in</string>
+    <string name="dont_have_account">Don\'t have an account? Register now</string>
+    <string name="login">Log in</string>
+    <string name="orLogin">or log in with</string>
+    <string name="register">Register</string>
+    <string name="already_have_account">Already have an account? Log in now</string>
+    <string name="prompt_username">Username</string>
+</resources>

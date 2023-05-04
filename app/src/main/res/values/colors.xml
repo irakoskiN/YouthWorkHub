@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_accent">#379392</color>
+    <color name="green_accent_darker">#286968</color>
+    <color name="neutral_gray">#788089</color>
+    <color name="neutral_gray_darker">#54595e</color>
+    <color name="white_variant">#F4F4F4</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black_variant">#1B1B1B</color>
+    <color name="black">#000000</color>
+    <color name="blue">#60ACDD</color>
+    <color name="brown">#8a7460</color>
+</resources>
