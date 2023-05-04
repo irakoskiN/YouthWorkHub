@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "891149307635",
+    "project_id": "youthworkhub-c81c6",
+    "storage_bucket": "youthworkhub-c81c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891149307635:android:8e042c3f65b2788c313186",
+        "android_client_info": {
+          "package_name": "com.youthworkhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891149307635-dkgr4qtgrt4c0n8d0rn22sugtqff0pl8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.youthworkhub",
+            "certificate_hash": "9682176af4bede27e27ef5ce45c4f1d956788d99"
+          }
+        },
+        {
+          "client_id": "891149307635-94snupkuk5uqqq32fgsaga6q54758e1v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPBGYJ8-tH8P5fXNNrDq2ljrbX1OJD1M8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891149307635-94snupkuk5uqqq32fgsaga6q54758e1v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

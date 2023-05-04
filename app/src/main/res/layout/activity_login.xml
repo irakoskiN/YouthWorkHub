@@ -53,15 +53,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black_variant" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordLayout"
         style="@style/outlinedRoundedButtons"
         android:textColorHint="@color/black_variant"
-        app:endIconTint="@color/black_variant"
         app:endIconMode="password_toggle"
+        app:endIconTint="@color/black_variant"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +73,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/black_variant" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
