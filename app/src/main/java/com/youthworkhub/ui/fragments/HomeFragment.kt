@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
                             timestamp = jobData.data.get("timestamp") as Long?,
                             description = jobData.data.get("description").toString(),
                             owner = null,
-                            image = null
+                            image =  jobData.data.get("image").toString()
                         )
                         Log.d("pece Full", "${jobData.id} => ${objData}")
                         data.add(objData)

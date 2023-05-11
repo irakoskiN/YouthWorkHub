@@ -6,18 +6,27 @@
     android:layout_height="match_parent"
     android:background="@color/white_variant"
     tools:context=".ui.activity.CreateJobActivity">
-
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintBottom_toTopOf="@+id/TitleLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/circle_gray"
+        />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/TitleLayout"
         style="@style/outlinedRoundedButtons"
         android:textColorHint="@color/black_variant"
         app:endIconMode="clear_text"
         app:endIconTint="@color/black_variant"
-        app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintBottom_toTopOf="@+id/decriptionLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/image">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/titleInput"

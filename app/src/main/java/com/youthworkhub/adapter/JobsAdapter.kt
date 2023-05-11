@@ -24,13 +24,14 @@ class JobsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = data[position]
 
-        Log.i("pece", "curent "+current.title)
+        Log.i("pece", "curent "+current.image)
 
-        if (!current.image.isNullOrEmpty()) {
+        if (!current.image.isNullOrEmpty() && current.image != "null") {
             glide
                 .load(current.image)
                 .into(holder.binding.jobItemIv)
         } else {
+            Log.i("pece", "curent "+current.image)
             holder.binding.jobItemIv.setImageResource(R.drawable.dog_walking)
         }
 
