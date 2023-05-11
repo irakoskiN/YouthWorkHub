@@ -1,5 +1,6 @@
 package com.youthworkhub.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
@@ -16,6 +17,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupMainNav()
+        binding.createJob.setOnClickListener {
+            val intent = Intent(this, CreateJobActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupMainNav() {

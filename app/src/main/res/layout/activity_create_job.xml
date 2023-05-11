@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_variant"
+    tools:context=".ui.activity.CreateJobActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TitleLayout"
+        style="@style/outlinedRoundedButtons"
+        android:textColorHint="@color/black_variant"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/black_variant"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintBottom_toTopOf="@+id/decriptionLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/titleInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="title"
+            android:inputType="text"
+            android:textColor="@color/black_variant" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/decriptionLayout"
+        style="@style/outlinedRoundedButtons"
+        android:textColorHint="@color/black_variant"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/black_variant"
+        app:layout_constraintBottom_toBottomOf="@+id/skillsLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/decriptionInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Desc"
+            android:inputType="text"
+            android:textColor="@color/black_variant" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/skillsLayout"
+        style="@style/outlinedRoundedButtons"
+        android:textColorHint="@color/black_variant"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/black_variant"
+        app:layout_constraintBottom_toBottomOf="@+id/locationLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/decriptionLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/skillsInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="skills req"
+            android:inputType="text"
+            android:textColor="@color/black_variant" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/locationLayout"
+        style="@style/outlinedRoundedButtons"
+        android:textColorHint="@color/black_variant"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/black_variant"
+        app:layout_constraintBottom_toBottomOf="@+id/priceLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/skillsLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/locationInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="location"
+            android:inputType="text"
+            android:textColor="@color/black_variant" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/priceLayout"
+        style="@style/outlinedRoundedButtons"
+        android:textColorHint="@color/black_variant"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/black_variant"
+        app:layout_constraintBottom_toBottomOf="@+id/postJob"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/priceInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="price"
+            android:inputType="text"
+            android:textColor="@color/black_variant" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/postJob"
+        style="@style/primaryButtonStyle"
+        android:text="Create Job"
+        app:layout_constraintBottom_toBottomOf="@+id/priceLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
