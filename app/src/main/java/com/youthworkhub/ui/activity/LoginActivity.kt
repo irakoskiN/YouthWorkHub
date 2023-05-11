@@ -14,12 +14,16 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
 
+    override fun onResume() {
+        super.onResume()
+        initAuth()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initAuth()
         setupButtonClicks()
     }
 
@@ -28,7 +32,8 @@ class LoginActivity : AppCompatActivity() {
 
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            Firebase.auth.signOut()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -53,8 +58,13 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.i("LoginTAG", "login successful")
+                    //todo save user in shared pref
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     Log.i("LoginTAG", "login failed", task.exception)
+                    // todo show dialog
                 }
             }
     }

@@ -1,5 +1,6 @@
 package com.youthworkhub.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import com.youthworkhub.databinding.ActivityWelcomeBinding
 import com.youthworkhub.ui.fragments.WelcomeFirstFragment
 import com.youthworkhub.ui.fragments.WelcomeSecondFragment
 import com.youthworkhub.ui.fragments.WelcomeThirdFragment
+import com.youthworkhub.utils.PreferencesManager
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -36,6 +38,22 @@ class WelcomeActivity : AppCompatActivity() {
 
         binding.welcomeViewPager.adapter = welcomeSectionAdapter
         binding.welcomeViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val prevOpened = PreferencesManager.getPreviouslyOpened()
+        if (prevOpened) {
+            openLoginActivity()
+        } else {
+            PreferencesManager.putPreviouslyOpened(true)
+        }
+    }
+
+    private fun openLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 }

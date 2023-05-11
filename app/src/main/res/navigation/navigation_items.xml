@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_items"
+    app:startDestination="@id/nav_item_home">
+
+    <activity
+        android:id="@+id/nav_item_main_activity"
+        android:name="com.youthworkhub.ui.activity.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+
+    <fragment
+        android:id="@+id/nav_item_home"
+        android:name="com.youthworkhub.ui.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_item_search"
+        android:name="com.youthworkhub.ui.fragments.SearchJobsFragment"
+        android:label="fragment_jobs"
+        tools:layout="@layout/fragment_search_jobs" />
+
+    <fragment
+        android:id="@+id/nav_item_saved"
+        android:name="com.youthworkhub.ui.fragments.SavedFragment"
+        android:label="fragment_saved"
+        tools:layout="@layout/fragment_saved" />
+
+    <fragment
+        android:id="@+id/nav_item_account"
+        android:name="com.youthworkhub.ui.fragments.AccountFragment"
+        android:label="fragment_candidates"
+        tools:layout="@layout/fragment_accounts" />
+
+</navigation>
