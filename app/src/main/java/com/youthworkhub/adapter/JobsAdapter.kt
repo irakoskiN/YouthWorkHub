@@ -11,6 +11,7 @@ import com.youthworkhub.model.JobsModel
 class JobsAdapter(
     val data: MutableList<JobsModel>,
     val glide: RequestManager,
+    var onSaveClick: (JobsModel) -> Unit,
 ) : RecyclerView.Adapter<JobsAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: JobItemLayoutBinding) : RecyclerView.ViewHolder(binding.root)
@@ -23,6 +24,9 @@ class JobsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = data[position]
 
+        if(current.saved){
+            holder.binding.jobItemIvSave.setImageResource(R.drawable.baseline_bookmark_24)
+        }
         if (!current.image.isNullOrEmpty() && current.image != "null") {
             glide
                 .load(current.image)
@@ -37,8 +41,20 @@ class JobsAdapter(
         holder.binding.jobItemTvDesc.text = current.description
         holder.binding.jobItemTvSkills.text = current.skills
         holder.binding.jobItemTvTime.text = current.timestamp.toString()
+
+        holder.binding.jobItemIvSave.setOnClickListener {
+            if(current.saved){
+                holder.binding.jobItemIvSave.setImageResource(R.drawable.baseline_bookmark_24)
+            }else{
+                holder.binding.jobItemIvSave.setImageResource(R.drawable.baseline_bookmark_border_24)
+            }
+            onSaveClick(current)
+        }
     }
 
+    fun setSavedJob(id: String){
+
+    }
     override fun getItemCount(): Int {
         return data.size
     }

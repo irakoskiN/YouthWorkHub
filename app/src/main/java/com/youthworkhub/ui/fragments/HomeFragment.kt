@@ -7,14 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.bumptech.glide.Glide
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.youthworkhub.adapter.JobsAdapter
+import com.youthworkhub.application.AppController
 import com.youthworkhub.databinding.FragmentHomeBinding
 import com.youthworkhub.model.JobsModel
-import com.youthworkhub.model.UserModel
+import com.youthworkhub.room.AppDatabase
+import com.youthworkhub.room.SavedJob
 
 class HomeFragment : Fragment() {
 
@@ -32,6 +34,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val savedJobsIds = AppController.roomDb.savedJobDao().getIds()
 
         var data: MutableList<JobsModel> = mutableListOf()
 //        TODO chage doc path to userId
@@ -51,7 +54,8 @@ class HomeFragment : Fragment() {
                             timestamp = jobData.data.get("timestamp") as Long?,
                             description = jobData.data.get("description").toString(),
                             owner = null,
-                            image =  jobData.data.get("image").toString()
+                            image =  jobData.data.get("image").toString(),
+                            saved = savedJobsIds.contains(jobData.id)
                         )
                         Log.d("pece Full", "${jobData.id} => ${objData}")
                         data.add(objData)
@@ -110,10 +114,32 @@ class HomeFragment : Fragment() {
         val jobsAdapter = JobsAdapter(
             data,
             glide = Glide.with(this),
+            onSaveClick = { item -> onSavedJob(item) }
         )
 
         binding.jobsRv.adapter = jobsAdapter
         binding.jobsRv.layoutManager = LinearLayoutManager(context)
+    }
+
+    private fun onSavedJob(item: JobsModel) {
+        val saveJobDao = AppController.roomDb.savedJobDao()
+        if(item.saved){
+            Log.i("ROOM", "deleting")
+            saveJobDao.deletJob(item.id)
+        }else{
+            Log.i("ROOM", "saving")
+            val saveData = SavedJob(
+                item.id,
+                item.description,
+                item.location,
+                item.timestamp,
+                item.title,
+                item.price,
+                item.skills,
+                item.image
+            )
+            saveJobDao.saveJob(saveData)
+        }
     }
 
 
