@@ -1,64 +1,72 @@
-package com.youthworkhub.ui.activity
+package com.youthworkhub.ui.fragments
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.OpenableColumns
 import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
-import com.youthworkhub.databinding.ActivityCreateJobBinding
-import com.youthworkhub.databinding.ActivityMainBinding
+import com.youthworkhub.R
+import com.youthworkhub.databinding.FragmentCreateJobBinding
 import com.youthworkhub.model.CreateJobModel
-import com.youthworkhub.model.JobsModel
-import com.youthworkhub.model.UserModel
+import com.youthworkhub.ui.activity.MainActivity
+import com.youthworkhub.utils.PreferencesManager
 
-class CreateJobActivity : AppCompatActivity() {
+class CreateJobFragment : Fragment() {
 
-    private lateinit var binding: ActivityCreateJobBinding
+    private var _binding: FragmentCreateJobBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityCreateJobBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        binding.image.setOnClickListener {
-            val galleryIntent = Intent(Intent.ACTION_PICK)
-            // here item is type of image
-            galleryIntent.type = "image/*"
-            // ActivityResultLauncher callback
-            imagePickerActivityResult.launch(galleryIntent)
-        }
-        setupButtonClicks()
-
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        // Inflate the layout for this fragment
+        _binding = FragmentCreateJobBinding.inflate(inflater, container, false)
+        return binding.root
     }
-    fun setupButtonClicks(){
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupButtonClicks()
+    }
+
+    private fun setupButtonClicks() {
         binding.postJob.setOnClickListener {
-//            TODO change docpath with userId
-            val path = Firebase.firestore.collection("users").document("C67cq8CmVeMbq5SWIStORokq1ze2")
+            val path = Firebase.firestore.collection("users").document(PreferencesManager.getUser().id)
             val createJobData = CreateJobModel(
                 title = binding.titleInput.text.toString(),
                 description = binding.decriptionInput.text.toString(),
                 skills = binding.skillsInput.text.toString(),
                 timestamp = System.currentTimeMillis(),
-                owner =  path,
+                owner = path,
                 price = binding.priceInput.text.toString(),
                 location = binding.locationInput.text.toString()
             )
 
-            Firebase.firestore.collection("job-posts").add(createJobData).addOnSuccessListener { documentReference ->
-                Log.d("pece", "DocumentSnapshot written with ID: ${documentReference.id}")
-            }
-                .addOnFailureListener { e ->
-                    Log.w("pece", "Error adding document", e)
+            Firebase.firestore.collection("job-posts").add(createJobData)
+                .addOnSuccessListener { documentReference ->
+                    Log.d("CreateJobTag", "DocumentSnapshot written with ID: ${documentReference.id}")
+//                    TODO open home fragment
+
                 }
+                .addOnFailureListener { e ->
+                    Log.w("CreateJobTag", "Error adding document", e)
+                }
+        }
+
+        binding.image.setOnClickListener {
+            val galleryIntent = Intent(Intent.ACTION_PICK)
+            galleryIntent.type = "image/*"
+            imagePickerActivityResult.launch(galleryIntent)
         }
     }
 
@@ -66,7 +74,7 @@ class CreateJobActivity : AppCompatActivity() {
     private var imagePickerActivityResult: ActivityResultLauncher<Intent> =
     // lambda expression to receive a result back, here we
         // receive single item(photo) on selection
-        registerForActivityResult( ActivityResultContracts.StartActivityForResult()) { result ->
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result != null) {
                 // getting URI of selected Image
                 val imageUri: Uri? = result.data?.data
@@ -74,8 +82,8 @@ class CreateJobActivity : AppCompatActivity() {
                 // val fileName = imageUri?.pathSegments?.last()
 
                 // extract the file name with extension
-                val sd = getFileName(applicationContext, imageUri!!)
-                Glide.with(this@CreateJobActivity)
+                val sd = getFileName(imageUri!!)
+                Glide.with(requireContext())
                     .load(imageUri)
                     .into(binding.image)
 
@@ -103,7 +111,8 @@ class CreateJobActivity : AppCompatActivity() {
 
             }
         }
-    private fun getFileName(context: Context, uri: Uri): String? {
+
+    private fun getFileName(uri: Uri): String? {
         return uri.path?.lastIndexOf('/')?.let { uri.path?.substring(it) }
     }
 }

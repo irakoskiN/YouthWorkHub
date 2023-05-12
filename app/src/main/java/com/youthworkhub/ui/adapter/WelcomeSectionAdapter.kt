@@ -1,4 +1,4 @@
-package com.youthworkhub.adapter
+package com.youthworkhub.ui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

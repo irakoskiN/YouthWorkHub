@@ -6,9 +6,9 @@
         android:title="@string/home" />
 
     <item
-        android:id="@+id/item_search_job"
-        android:icon="@drawable/baseline_search_24"
-        android:title="@string/search" />
+        android:id="@+id/item_create_job"
+        android:icon="@drawable/baseline_add_circle_24"
+        android:title="@string/create_job" />
 
     <item
         android:id="@+id/item_saved"

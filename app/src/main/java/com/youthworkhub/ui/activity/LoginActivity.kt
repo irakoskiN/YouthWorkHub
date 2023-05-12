@@ -60,29 +60,29 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Log.i("FB", "login successful")
+                    Log.i("LoginTAG", "login successful")
                     Firebase.firestore.collection("users").document(task.result.user!!.uid).get()
                         .addOnSuccessListener { document ->
                             if (document != null) {
-                                Log.d("FB", "DocumentSnapshot data: ${document.data}")
+                                Log.d("LoginTAG", "DocumentSnapshot data: ${document.data}")
                                 val userData = Helpers.parseFbUserToUserModal(document.data)
-                                if(userData != null){
+                                if (userData != null) {
                                     PreferencesManager.putUser(userData)
                                 }
 
                             } else {
-                                Log.d("FB", "No such document")
+                                Log.d("LoginTAG", "No such document")
                             }
                         }
                         .addOnFailureListener { exception ->
-                                Log.d("FB", "get failed with ", exception)
-                            }
+                            Log.d("LoginTAG", "get failed with ", exception)
+                        }
 
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
-                    Log.i("FB", "login failed", task.exception)
+                    Log.i("LoginTAG", "login failed", task.exception)
                     // todo show dialog
                 }
             }

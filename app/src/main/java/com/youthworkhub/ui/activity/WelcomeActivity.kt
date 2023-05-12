@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.youthworkhub.adapter.WelcomeSectionAdapter
+import com.youthworkhub.ui.adapter.WelcomeSectionAdapter
 import com.youthworkhub.databinding.ActivityWelcomeBinding
 import com.youthworkhub.ui.fragments.WelcomeFirstFragment
 import com.youthworkhub.ui.fragments.WelcomeSecondFragment

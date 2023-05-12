@@ -19,12 +19,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupMainNav()
-        binding.createJob.setOnClickListener {
-            val intent = Intent(this, CreateJobActivity::class.java)
-            startActivity(intent)
-        }
+
         binding.openSettings.setOnClickListener {
-            Firebase.auth.signOut();
+            Firebase.auth.signOut()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
@@ -41,9 +38,9 @@ class MainActivity : AppCompatActivity() {
                     binding.screenTitle.text = resources.getString(R.string.jobs_title)
                     return@setOnItemSelectedListener true
                 }
-                R.id.item_search_job -> {
-                    openFragment(R.id.nav_item_search)
-                    binding.screenTitle.text = resources.getString(R.string.search_title)
+                R.id.item_create_job -> {
+                    openFragment(R.id.nav_item_create_job)
+                    binding.screenTitle.text = resources.getString(R.string.create_job_title)
                     return@setOnItemSelectedListener true
                 }
                 R.id.item_saved -> {

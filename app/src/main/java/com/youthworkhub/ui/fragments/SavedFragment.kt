@@ -8,13 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.youthworkhub.R
-import com.youthworkhub.adapter.JobsAdapter
+import com.youthworkhub.ui.adapter.JobsAdapter
 import com.youthworkhub.application.AppController
-import com.youthworkhub.databinding.FragmentHomeBinding
 import com.youthworkhub.databinding.FragmentSavedBinding
 import com.youthworkhub.model.JobsModel
-import com.youthworkhub.room.SavedJob
+import com.youthworkhub.utils.Helpers
 
 class SavedFragment : Fragment() {
 
@@ -33,49 +31,41 @@ class SavedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        TODO call room DB
-        val savedObj =  AppController.roomDb.savedJobDao().getAll()
-        Log.d("ROOM", "the data:  ${savedObj} " )
-        val arrOfSavedJob:MutableList<JobsModel> = mutableListOf()
-        for (item in savedObj){
-            val saveData = JobsModel(
-                item.id,
-                item.description,
-                item.location,
-                null,
-                item.timestamp,
-                item.title,
-                item.price,
-                item.skills,
-                item.image,
-                 true
-            )
-            arrOfSavedJob.add(saveData)
+
+        getSavedItems()
+    }
+
+    private fun getSavedItems() {
+        val savedObj = AppController.roomDb.savedJobDao().getAll()
+        Log.d("SavedFragmentTag", "saved data:  $savedObj")
+
+        val arrOfSavedJobs: MutableList<JobsModel> = mutableListOf()
+        for (item in savedObj) {
+            val saveData = Helpers.convertToJobModel(item)
+            arrOfSavedJobs.add(saveData)
         }
 
-        setContentAdapter(arrOfSavedJob)
+        setContentAdapter(arrOfSavedJobs)
     }
 
     private fun setContentAdapter(data: MutableList<JobsModel>) {
-
         jobsAdapter = JobsAdapter(
             data,
             glide = Glide.with(this),
-            onSaveClick = { item -> onSavedJob(item)}
+            onSaveClick = { item -> removeItem(item) }
         )
 
         binding.savedRv.adapter = jobsAdapter
         binding.savedRv.layoutManager = LinearLayoutManager(context)
     }
-//    removeing item from mylist
-    fun onSavedJob(item: JobsModel){
-    AppController.roomDb.savedJobDao().deletJob(item.id)
-        jobsAdapter?.removeItem(item)
 
+    private fun removeItem(item: JobsModel) {
+        AppController.roomDb.savedJobDao().deleteJob(item.id)
+        jobsAdapter?.removeItem(item)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 

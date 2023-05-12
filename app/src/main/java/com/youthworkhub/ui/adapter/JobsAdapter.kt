@@ -1,4 +1,4 @@
-package com.youthworkhub.adapter
+package com.youthworkhub.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,9 +7,10 @@ import com.bumptech.glide.RequestManager
 import com.youthworkhub.R
 import com.youthworkhub.databinding.JobItemLayoutBinding
 import com.youthworkhub.model.JobsModel
+import com.youthworkhub.utils.Helpers
 
 class JobsAdapter(
-    private val jobsData: MutableList<JobsModel>,
+    jobsData: MutableList<JobsModel>,
     val glide: RequestManager,
     var onSaveClick: (JobsModel) -> Unit,
 ) : RecyclerView.Adapter<JobsAdapter.ViewHolder>() {
@@ -42,7 +43,7 @@ class JobsAdapter(
         holder.binding.jobItemTvTitle.text = current.title
         holder.binding.jobItemTvDesc.text = current.description
         holder.binding.jobItemTvSkills.text = current.skills
-        holder.binding.jobItemTvTime.text = current.timestamp.toString()
+        holder.binding.jobItemTvTime.text = Helpers.parseTime(current.timestamp)
 
         holder.binding.jobItemIvSave.setOnClickListener {
             if(current.saved){
@@ -54,19 +55,12 @@ class JobsAdapter(
         }
     }
 
-    fun updateList(updatedList: MutableList<JobsModel>) {
-        data = updatedList
-        notifyDataSetChanged()
-    }
-
     fun removeItem(item: JobsModel){
-//        data.remove(item)
         val index = data.indexOf(item)
         if(index != -1){
             data.removeAt(index)
             notifyItemRemoved(index)
         }
-
     }
 
     override fun getItemCount(): Int {

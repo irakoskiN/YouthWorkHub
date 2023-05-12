@@ -1,7 +1,6 @@
 package com.youthworkhub.room
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
@@ -17,5 +16,5 @@ interface SavedJobDao{
     fun saveJob(vararg: SavedJob)
 
     @Query("DELETE FROM savedjob WHERE id = :jobId")
-    fun deletJob(jobId: String)
+    fun deleteJob(jobId: String)
 }

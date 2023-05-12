@@ -11,5 +11,4 @@ data class JobsModel(
     var skills: String?,
     var image: String? = null,
     var saved: Boolean = false
-) {
-}
+)

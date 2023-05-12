@@ -18,10 +18,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_item_search"
-        android:name="com.youthworkhub.ui.fragments.SearchJobsFragment"
-        android:label="fragment_jobs"
-        tools:layout="@layout/fragment_search_jobs" />
+        android:id="@+id/nav_item_create_job"
+        android:name="com.youthworkhub.ui.fragments.CreateJobFragment"
+        android:label="fragment_create_job"
+        tools:layout="@layout/fragment_create_job" />
 
     <fragment
         android:id="@+id/nav_item_saved"

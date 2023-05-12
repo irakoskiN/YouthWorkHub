@@ -11,6 +11,4 @@ data class CreateJobModel(
     var price: String?,
     var skills: String?,
     var image: String? = null
-) {
-
-}
+)

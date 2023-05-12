@@ -19,7 +19,7 @@ object PreferencesManager {
         AppController.sharedPreferences.edit().putString(Constants.USER_MODEL, Gson().toJson(user)).apply()
     }
 
-    fun getUser() {
+    fun getUser(): UserModel {
         return Gson().fromJson(
             AppController.sharedPreferences.getString(Constants.USER_MODEL, ""),
             object : TypeToken<UserModel>() {
