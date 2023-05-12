@@ -9,10 +9,12 @@ import com.youthworkhub.databinding.JobItemLayoutBinding
 import com.youthworkhub.model.JobsModel
 
 class JobsAdapter(
-    val data: MutableList<JobsModel>,
+    private val jobsData: MutableList<JobsModel>,
     val glide: RequestManager,
     var onSaveClick: (JobsModel) -> Unit,
 ) : RecyclerView.Adapter<JobsAdapter.ViewHolder>() {
+
+    var data: MutableList<JobsModel> = jobsData
 
     inner class ViewHolder(val binding: JobItemLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -44,17 +46,29 @@ class JobsAdapter(
 
         holder.binding.jobItemIvSave.setOnClickListener {
             if(current.saved){
-                holder.binding.jobItemIvSave.setImageResource(R.drawable.baseline_bookmark_24)
-            }else{
                 holder.binding.jobItemIvSave.setImageResource(R.drawable.baseline_bookmark_border_24)
+            }else{
+                holder.binding.jobItemIvSave.setImageResource(R.drawable.baseline_bookmark_24)
             }
             onSaveClick(current)
         }
     }
 
-    fun setSavedJob(id: String){
+    fun updateList(updatedList: MutableList<JobsModel>) {
+        data = updatedList
+        notifyDataSetChanged()
+    }
+
+    fun removeItem(item: JobsModel){
+//        data.remove(item)
+        val index = data.indexOf(item)
+        if(index != -1){
+            data.removeAt(index)
+            notifyItemRemoved(index)
+        }
 
     }
+
     override fun getItemCount(): Int {
         return data.size
     }

@@ -6,8 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.youthworkhub.databinding.ActivityLoginBinding
+import com.youthworkhub.utils.Helpers
+import com.youthworkhub.utils.PreferencesManager
 
 class LoginActivity : AppCompatActivity() {
 
@@ -57,13 +60,29 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Log.i("LoginTAG", "login successful")
-                    //todo save user in shared pref
+                    Log.i("FB", "login successful")
+                    Firebase.firestore.collection("users").document(task.result.user!!.uid).get()
+                        .addOnSuccessListener { document ->
+                            if (document != null) {
+                                Log.d("FB", "DocumentSnapshot data: ${document.data}")
+                                val userData = Helpers.parseFbUserToUserModal(document.data)
+                                if(userData != null){
+                                    PreferencesManager.putUser(userData)
+                                }
+
+                            } else {
+                                Log.d("FB", "No such document")
+                            }
+                        }
+                        .addOnFailureListener { exception ->
+                                Log.d("FB", "get failed with ", exception)
+                            }
+
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
-                    Log.i("LoginTAG", "login failed", task.exception)
+                    Log.i("FB", "login failed", task.exception)
                     // todo show dialog
                 }
             }

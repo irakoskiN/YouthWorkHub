@@ -20,6 +20,7 @@ class SavedFragment : Fragment() {
 
     private var _binding: FragmentSavedBinding? = null
     private val binding get() = _binding!!
+    private var jobsAdapter: JobsAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +47,8 @@ class SavedFragment : Fragment() {
                 item.title,
                 item.price,
                 item.skills,
-                item.image
+                item.image,
+                 true
             )
             arrOfSavedJob.add(saveData)
         }
@@ -56,16 +58,21 @@ class SavedFragment : Fragment() {
 
     private fun setContentAdapter(data: MutableList<JobsModel>) {
 
-        val jobsAdapter = JobsAdapter(
+        jobsAdapter = JobsAdapter(
             data,
             glide = Glide.with(this),
-            onSaveClick = {}
+            onSaveClick = { item -> onSavedJob(item)}
         )
 
         binding.savedRv.adapter = jobsAdapter
         binding.savedRv.layoutManager = LinearLayoutManager(context)
     }
+//    removeing item from mylist
+    fun onSavedJob(item: JobsModel){
+    AppController.roomDb.savedJobDao().deletJob(item.id)
+        jobsAdapter?.removeItem(item)
 
+    }
     override fun onDestroyView() {
         super.onDestroyView()
 

@@ -37,9 +37,9 @@ class HomeFragment : Fragment() {
         val savedJobsIds = AppController.roomDb.savedJobDao().getIds()
 
         var data: MutableList<JobsModel> = mutableListOf()
-//        TODO chage doc path to userId
-        val path = Firebase.firestore.collection("users").document("C67cq8CmVeMbq5SWIStORokq1ze2")
-        Firebase.firestore.collection("job-posts").whereEqualTo("owner", path).get()
+//        val path = Firebase.firestore.collection("users").document("C67cq8CmVeMbq5SWIStORokq1ze2")
+//            .whereEqualTo("owner", path) // for my posts
+        Firebase.firestore.collection("job-posts").get()
             .addOnSuccessListener { jobsData ->
 
                 if (jobsData != null) {

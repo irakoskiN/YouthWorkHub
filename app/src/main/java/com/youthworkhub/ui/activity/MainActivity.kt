@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.youthworkhub.R
 import com.youthworkhub.databinding.ActivityMainBinding
 
@@ -20,6 +22,12 @@ class MainActivity : AppCompatActivity() {
         binding.createJob.setOnClickListener {
             val intent = Intent(this, CreateJobActivity::class.java)
             startActivity(intent)
+        }
+        binding.openSettings.setOnClickListener {
+            Firebase.auth.signOut();
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
