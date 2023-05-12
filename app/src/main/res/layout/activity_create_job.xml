@@ -6,17 +6,18 @@
     android:layout_height="match_parent"
     android:background="@color/white_variant"
     tools:context=".ui.activity.CreateJobActivity">
+
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintVertical_chainStyle="packed"
+        android:src="@drawable/circle_gray"
         app:layout_constraintBottom_toTopOf="@+id/TitleLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/circle_gray"
-        />
+        app:layout_constraintVertical_chainStyle="packed" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/TitleLayout"
         style="@style/outlinedRoundedButtons"
@@ -32,7 +33,7 @@
             android:id="@+id/titleInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="title"
+            android:hint="@string/title"
             android:inputType="text"
             android:textColor="@color/black_variant" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -52,7 +53,7 @@
             android:id="@+id/decriptionInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Desc"
+            android:hint="@string/desc"
             android:inputType="text"
             android:textColor="@color/black_variant" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -72,7 +73,7 @@
             android:id="@+id/skillsInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="skills req"
+            android:hint="@string/skills"
             android:inputType="text"
             android:textColor="@color/black_variant" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -92,7 +93,7 @@
             android:id="@+id/locationInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="location"
+            android:hint="@string/location"
             android:inputType="text"
             android:textColor="@color/black_variant" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -112,7 +113,7 @@
             android:id="@+id/priceInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="price"
+            android:hint="@string/price"
             android:inputType="text"
             android:textColor="@color/black_variant" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -120,7 +121,7 @@
     <Button
         android:id="@+id/postJob"
         style="@style/primaryButtonStyle"
-        android:text="Create Job"
+        android:text="@string/create_job"
         app:layout_constraintBottom_toBottomOf="@+id/priceLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

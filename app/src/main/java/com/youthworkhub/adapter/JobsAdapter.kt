@@ -1,6 +1,5 @@
 package com.youthworkhub.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,15 +23,14 @@ class JobsAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = data[position]
 
-        Log.i("pece", "curent "+current.image)
-
         if (!current.image.isNullOrEmpty() && current.image != "null") {
             glide
                 .load(current.image)
                 .into(holder.binding.jobItemIv)
+            holder.binding.jobItemIv.clipToOutline = true
         } else {
-            Log.i("pece", "curent "+current.image)
             holder.binding.jobItemIv.setImageResource(R.drawable.dog_walking)
+            holder.binding.jobItemIv.clipToOutline = true
         }
 
         holder.binding.jobItemTvTitle.text = current.title
@@ -42,6 +40,6 @@ class JobsAdapter(
     }
 
     override fun getItemCount(): Int {
-       return data.size
+        return data.size
     }
 }

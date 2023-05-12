@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">YouthWorkHub</string>
+    <string name="hello_blank_fragment">Здраво празен фрагмент!</string>
+    <string name="find_side_hustle_title">Разгледајте го најлесниот начин да најдете плус работа.</string>
+    <string name="find_side_hustle_desc">Ако сте студент, барате работа или само сакате да заработите дополнителни пари, вие сте на вистинското место.</string>
+    <string name="post_job_title">YouthWorkHub е исто така совршено место за објавување на слободно работно место!</string>
+    <string name="post_job_desc">Ако имате работи што треба да ги направите, тука можете да најдете личност која ќе ги направи наместо вас.</string>
+    <string name="welcome3_title">Без разлика дали барате совршен кандидат или совршена работа на YouthWorkHub можете да ги пронајдите!</string>
+    <string name="prompt_password">Пасворд</string>
+    <string name="prompt_confirm_password">Потврди пасворд</string>
+    <string name="prompt_email">Емаил</string>
+    <string name="action_log_in">Логирај се</string>
+    <string name="dont_have_account">Немаш профил? Регистрирај се</string>
+    <string name="login">Логирај се</string>
+    <string name="orLogin">или логирај се со</string>
+    <string name="register">Регистрирај се</string>
+    <string name="already_have_account">Веќе имаш профил? Логирај се</string>
+    <string name="prompt_username">Корисничко име</string>
+    <string name="home">Дома</string>
+    <string name="search">Пребарувај</string>
+    <string name="saved">Зачувани</string>
+    <string name="account">Профил</string>
+    <string name="jobs_title">ОГЛАСИ</string>
+    <string name="search_title">ПРЕБАРУВАЈ</string>
+    <string name="saved_title">ЗАЧУВАНИ</string>
+    <string name="account_title">ПРОФИЛ</string>
+    <string name="apply">Пријави се</string>
+    <string name="create_job">Креирај оглас</string>
+    <string name="title">Наслов</string>
+    <string name="desc">Опис</string>
+    <string name="skills">Вештини</string>
+    <string name="location">Локација</string>
+    <string name="price">Цена</string>
+</resources>

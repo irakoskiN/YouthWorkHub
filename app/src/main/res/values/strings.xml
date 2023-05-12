@@ -5,7 +5,7 @@
     <string name="find_side_hustle_desc">If you\'re a student, job seeker or just looking to make some extra cash, you\'re in the right place.</string>
     <string name="post_job_title">YouthWorkHub is also the perfect place to post a vacancy!</string>
     <string name="post_job_desc">If you have things to be done, here you can find a person to do them for you.</string>
-    <string name="welcome3_title">Weather you\'re looking for the perfect candidate or for the perfect job YouthWorkHub has you covered!</string>
+    <string name="welcome3_title">Whether you\'re looking for the perfect candidate or for the perfect job YouthWorkHub has you covered!</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_confirm_password">Confirm password</string>
     <string name="prompt_email">Email</string>
@@ -17,7 +17,18 @@
     <string name="already_have_account">Already have an account? Log in now</string>
     <string name="prompt_username">Username</string>
     <string name="home">Home</string>
-    <string name="jobs">Search</string>
+    <string name="search">Search</string>
     <string name="saved">Saved</string>
     <string name="account">Account</string>
+    <string name="jobs_title">JOBS</string>
+    <string name="search_title">SEARCH</string>
+    <string name="saved_title">SAVED</string>
+    <string name="account_title">ACCOUNT</string>
+    <string name="apply">Apply</string>
+    <string name="create_job">Create Job</string>
+    <string name="title">Title</string>
+    <string name="desc">Description</string>
+    <string name="skills">Skills</string>
+    <string name="location">Location</string>
+    <string name="price">Price</string>
 </resources>

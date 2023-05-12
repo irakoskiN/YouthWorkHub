@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white_variant">
+    android:layout_marginBottom="@dimen/padding_size_medium"
+    android:background="@drawable/job_item_bg">
 
     <LinearLayout
         android:id="@+id/job_item_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_size_medium">
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -21,6 +21,10 @@
                 android:id="@+id/job_item_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@drawable/rounded_image_bg"
+                android:outlineProvider="background"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -37,34 +41,44 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/job_item_tv_title"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_size_small" />
+            android:orientation="vertical"
+            android:padding="@dimen/padding_size_medium">
 
-        <TextView
-            android:id="@+id/job_item_tv_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_size_small" />
+            <TextView
+                android:id="@+id/job_item_tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_size_small" />
 
-        <TextView
-            android:id="@+id/job_item_tv_skills"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_size_small" />
+            <TextView
+                android:id="@+id/job_item_tv_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_size_small" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/padding_size_small"
-            android:text="Apply"/>
+            <TextView
+                android:id="@+id/job_item_tv_skills"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_size_small" />
 
-        <TextView
-            android:id="@+id/job_item_tv_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/job_item_apply_btn"
+                style="@style/primaryButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_size_small"
+                android:text="@string/apply" />
+
+            <TextView
+                android:id="@+id/job_item_tv_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -30,18 +30,22 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.item_home -> {
                     openFragment(R.id.nav_item_home)
+                    binding.screenTitle.text = resources.getString(R.string.jobs_title)
                     return@setOnItemSelectedListener true
                 }
                 R.id.item_search_job -> {
                     openFragment(R.id.nav_item_search)
+                    binding.screenTitle.text = resources.getString(R.string.search_title)
                     return@setOnItemSelectedListener true
                 }
                 R.id.item_saved -> {
                     openFragment(R.id.nav_item_saved)
+                    binding.screenTitle.text = resources.getString(R.string.saved_title)
                     return@setOnItemSelectedListener true
                 }
                 R.id.item_account -> {
                     openFragment(R.id.nav_item_account)
+                    binding.screenTitle.text = resources.getString(R.string.account_title)
                     return@setOnItemSelectedListener true
                 }
             }
