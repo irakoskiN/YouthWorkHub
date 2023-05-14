@@ -14,17 +14,20 @@ import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.youthworkhub.R
 import com.youthworkhub.databinding.FragmentCreateJobBinding
 import com.youthworkhub.model.CreateJobModel
 import com.youthworkhub.ui.activity.MainActivity
 import com.youthworkhub.utils.PreferencesManager
+import java.net.URL
 
 class CreateJobFragment : Fragment() {
 
     private var _binding: FragmentCreateJobBinding? = null
     private val binding get() = _binding!!
-
+    var imageUri: Uri? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,26 +44,31 @@ class CreateJobFragment : Fragment() {
 
     private fun setupButtonClicks() {
         binding.postJob.setOnClickListener {
-            val path = Firebase.firestore.collection("users").document(PreferencesManager.getUser().id)
-            val createJobData = CreateJobModel(
-                title = binding.titleInput.text.toString(),
-                description = binding.decriptionInput.text.toString(),
-                skills = binding.skillsInput.text.toString(),
-                timestamp = System.currentTimeMillis(),
-                owner = path,
-                price = binding.priceInput.text.toString(),
-                location = binding.locationInput.text.toString()
-            )
+            if(imageUri != null){
+                val sd = getFileName(imageUri!!)
+                val storageRef = Firebase.storage.reference;
+                val ref = storageRef.child("img/$sd")
+                val uploadTask = ref.putFile(imageUri!!)
 
-            Firebase.firestore.collection("job-posts").add(createJobData)
-                .addOnSuccessListener { documentReference ->
-                    Log.d("CreateJobTag", "DocumentSnapshot written with ID: ${documentReference.id}")
-//                    TODO open home fragment
+                uploadTask.addOnSuccessListener{
+                    Log.i("Firebase", "Upload complited")
+                    ref.downloadUrl.addOnSuccessListener {
+                        // Got the download URL for 'users/me/profile.png'
+                        Log.i("Firebase", "download comp ${it.toString()}")
+                        saveJobInDb(it.toString())
+                    }.addOnFailureListener {
+                        // Handle any errors
+                    }
 
+
+                }.addOnFailureListener {
+                    Log.i("Firebase", "Image Upload fail")
                 }
-                .addOnFailureListener { e ->
-                    Log.w("CreateJobTag", "Error adding document", e)
-                }
+            }else{
+                saveJobInDb(null)
+            }
+
+
         }
 
         binding.image.setOnClickListener {
@@ -76,43 +84,39 @@ class CreateJobFragment : Fragment() {
         // receive single item(photo) on selection
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result != null) {
-                // getting URI of selected Image
-                val imageUri: Uri? = result.data?.data
+                imageUri = result.data?.data
 
-                // val fileName = imageUri?.pathSegments?.last()
-
-                // extract the file name with extension
-                val sd = getFileName(imageUri!!)
                 Glide.with(requireContext())
                     .load(imageUri)
                     .into(binding.image)
-
-//                // Upload Task with upload to directory 'file'
-//                // and name of the file remains same
-//                val storageRef = Firebase.storage.reference;
-//                val uploadTask = storageRef.child("img/$sd").putFile(imageUri)
-//
-//                // On success, download the file URL and display it
-//                uploadTask.addOnSuccessListener {
-//                    // using glide library to display the image
-//                    storageRef.child("img/$sd").downloadUrl.addOnSuccessListener {
-//                        Glide.with(this@CreateJobActivity)
-//                            .load(it)
-//                            .into(binding.image)
-//
-//                        Log.e("Firebase", "download passed")
-//                    }.addOnFailureListener {
-//                        Log.e("Firebase", "Failed in downloading")
-//                    }
-//                }.addOnFailureListener {
-//                    Log.e("Firebase", "Image Upload fail")
-//                }
-
-
             }
         }
 
     private fun getFileName(uri: Uri): String? {
         return uri.path?.lastIndexOf('/')?.let { uri.path?.substring(it) }
+    }
+
+    private fun saveJobInDb(image: String?){
+        val path = Firebase.firestore.collection("users").document(PreferencesManager.getUser().id)
+        val createJobData = CreateJobModel(
+            title = binding.titleInput.text.toString(),
+            description = binding.decriptionInput.text.toString(),
+            skills = binding.skillsInput.text.toString(),
+            timestamp = System.currentTimeMillis(),
+            owner = path,
+            price = binding.priceInput.text.toString(),
+            location = binding.locationInput.text.toString(),
+            image = image
+        )
+
+        Firebase.firestore.collection("job-posts").add(createJobData)
+            .addOnSuccessListener { documentReference ->
+                Log.i("CreateJobTag", "DocumentSnapshot written with ID: ${documentReference.id}")
+//                    TODO open home fragment
+
+            }
+            .addOnFailureListener { e ->
+                Log.e("CreateJobTag", "Error adding document", e)
+            }
     }
 }
