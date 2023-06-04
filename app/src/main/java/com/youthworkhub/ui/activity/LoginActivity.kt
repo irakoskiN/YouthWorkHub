@@ -5,6 +5,9 @@ import android.content.IntentSender
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.facebook.*
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -19,11 +22,13 @@ import com.youthworkhub.databinding.ActivityLoginBinding
 import com.youthworkhub.model.UserModel
 import com.youthworkhub.utils.Helpers
 import com.youthworkhub.utils.PreferencesManager
+import org.json.JSONException
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var callbackManager: CallbackManager
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var oneTapClient: SignInClient
     private lateinit var signInRequest: BeginSignInRequest
@@ -39,12 +44,14 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        callbackManager = CallbackManager.Factory.create()
         setupButtonClicks()
         googleAuthInit()
+        handleFacebookSignInResult()
 
     }
 
-    private fun googleAuthInit(){
+    private fun googleAuthInit() {
         oneTapClient = Identity.getSignInClient(this)
         signInRequest = BeginSignInRequest.builder()
             .setPasswordRequestOptions(BeginSignInRequest.PasswordRequestOptions.builder()
@@ -180,6 +187,12 @@ class LoginActivity : AppCompatActivity() {
         binding.imageViewGoogle.setOnClickListener {
             singUpWithGoogle()
         }
+
+        binding.imageViewFacebook.setOnClickListener {
+            LoginManager.getInstance().logOut()
+            LoginManager.getInstance()
+                .logInWithReadPermissions(this, callbackManager, listOf("public_profile", "email"))
+        }
     }
 
     private fun login(email: String, password: String) {
@@ -214,7 +227,7 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    private fun singUpWithGoogle(){
+    private fun singUpWithGoogle() {
         Log.e("GOOGLE", "clcked ${signUpRequest}")
         oneTapClient.beginSignIn(signUpRequest)
             .addOnSuccessListener(this) { result ->
@@ -230,5 +243,58 @@ class LoginActivity : AppCompatActivity() {
                 // No Google Accounts found. Just continue presenting the signed-out UI.
                 Log.d("GOOGLE", e.localizedMessage)
             }
+    }
+
+    private fun handleFacebookSignInResult() {
+        LoginManager.getInstance().registerCallback(callbackManager, object :
+            FacebookCallback<LoginResult> {
+            override fun onCancel() {
+                Log.i("Facebook Login", "onCancel")
+            }
+
+            override fun onError(error: FacebookException) {
+                Log.e("Facebook Login", "onError", error)
+                // todo show error dialog
+            }
+
+            override fun onSuccess(result: LoginResult) {
+                val facebookAccessToken = result.accessToken
+                getFacebookUser(facebookAccessToken)
+                Log.i("Facebook Login", "onSuccess")
+            }
+        })
+    }
+
+    private fun getFacebookUser(facebookAccessToken: AccessToken) {
+        val params = Bundle()
+        params.putString("fields", "email,first_name,last_name,picture,id")
+
+        val request = GraphRequest(
+            facebookAccessToken,
+            "/me",
+            params,
+            HttpMethod.GET,
+            { response ->
+                try {
+                    val obj = response.jsonObject
+                    if (obj != null) {
+
+                        val facebookUser = UserModel(
+                            id = obj.getString("id"),
+                            email = obj.getString("email"),
+                            username = obj.getString("first_name"),
+                            firstname = obj.getString("first_name"),
+                            lastname = obj.getString("last_name"),
+                            image = obj.getJSONObject("picture").getJSONObject("data").getString("url"),
+                        )
+
+                        Log.i("Facebook Login user", "name "+facebookUser.username)
+
+                    }
+                } catch (e: JSONException) {
+                    Log.e("Facebook Login", "GraphRequest JSONException", e)
+                }
+            })
+        request.executeAsync()
     }
 }
