@@ -36,4 +36,10 @@
     <string name="location">Location</string>
     <string name="price">Price</string>
     <string name="my_posts">My posts</string>
+    <string name="name_surname">Name Surname</string>
+    <string name="username">Username</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="log_out">Log out</string>
+    <string name="log_out_messege">Are you sure you want to log out?</string>
 </resources>

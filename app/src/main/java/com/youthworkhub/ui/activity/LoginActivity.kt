@@ -40,12 +40,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupButtonClicks()
-        setupGoogleClick()
         googleAuthInit()
 
     }
 
-    fun googleAuthInit(){
+    private fun googleAuthInit(){
         oneTapClient = Identity.getSignInClient(this)
         signInRequest = BeginSignInRequest.builder()
             .setPasswordRequestOptions(BeginSignInRequest.PasswordRequestOptions.builder()
@@ -86,11 +85,7 @@ class LoginActivity : AppCompatActivity() {
                 Log.d("GOOGLE", e.localizedMessage)
             }
     }
-    fun setupGoogleClick(){
-        binding.imageViewGoogle.setOnClickListener {
-            singUpWithGoogle()
-        }
-    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.d("GOOGLE", "onActivityResult")
@@ -127,8 +122,7 @@ class LoginActivity : AppCompatActivity() {
                                                             "RegisterTag",
                                                             "success saving user ${PreferencesManager.getUser()}"
                                                         )
-                                                        val intent =
-                                                            Intent(this, MainActivity::class.java)
+                                                        val intent = Intent(this, MainActivity::class.java)
                                                         startActivity(intent)
                                                         finish()
                                                     } else {
@@ -181,6 +175,10 @@ class LoginActivity : AppCompatActivity() {
             if (email.isNotEmpty() && pass.isNotEmpty()) {
                 login(email, pass)
             }
+        }
+
+        binding.imageViewGoogle.setOnClickListener {
+            singUpWithGoogle()
         }
     }
 
