@@ -16,9 +16,11 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="@dimen/icon_size_xxlarge"
+        android:layout_height="@dimen/icon_size_xxlarge"
         android:adjustViewBounds="true"
+        android:scaleX="2"
+        android:scaleY="2"
         android:src="@drawable/logo_icon_transparent"
         app:layout_constraintBottom_toTopOf="@+id/textViewSignup"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,14 +33,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="668dp" />
+        app:layout_constraintGuide_percent="0.25" />
 
     <TextView
         android:id="@+id/textViewSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register"
-        android:textSize="33sp"
+        android:textSize="@dimen/text_size_xxlarge"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/register_guideline_2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +50,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/usernameLayout"
         style="@style/outlinedRoundedButtons"
+        android:paddingHorizontal="@dimen/padding_size_medium"
         android:textColorHint="@color/black_variant"
         app:endIconMode="clear_text"
         app:layout_constraintBottom_toTopOf="@+id/emailLayout"
@@ -66,6 +69,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailLayout"
         style="@style/outlinedRoundedButtons"
+        android:paddingHorizontal="@dimen/padding_size_medium"
         android:textColorHint="@color/black_variant"
         app:endIconMode="clear_text"
         app:layout_constraintBottom_toTopOf="@+id/passwordLayout"
@@ -85,6 +89,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordLayout"
         style="@style/outlinedRoundedButtons"
+        android:paddingHorizontal="@dimen/padding_size_medium"
         android:textColorHint="@color/black_variant"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/black_variant"
@@ -105,6 +110,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/confirmPasswordLayout"
         style="@style/outlinedRoundedButtons"
+        android:paddingHorizontal="@dimen/padding_size_medium"
         android:textColorHint="@color/black_variant"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/black_variant"
@@ -137,7 +143,7 @@
         android:layout_height="wrap_content"
         android:text="@string/already_have_account"
         android:textColor="@color/green_accent"
-        android:textSize="15sp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintBottom_toBottomOf="@+id/register_guideline_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.88" />
+        app:layout_constraintGuide_percent="0.85" />
 
     <ImageView
         android:id="@+id/imageView4"

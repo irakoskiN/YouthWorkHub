@@ -15,10 +15,10 @@
     <style name="outlinedRoundedButtons" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="boxCornerRadiusBottomEnd">15dp</item>
-        <item name="boxCornerRadiusBottomStart">15dp</item>
-        <item name="boxCornerRadiusTopEnd">15dp</item>
-        <item name="boxCornerRadiusTopStart">15dp</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/default_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/default_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/default_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/default_radius</item>
         <item name="boxStrokeColor">@color/green_accent</item>
         <item name="hintTextColor">@color/green_accent</item>
     </style>
@@ -26,9 +26,9 @@
     <style name="primaryButtonStyle">
         <item name="backgroundTint">@color/green_accent</item>
         <item name="textAllCaps">false</item>
-        <item name="android:layout_width">250dp</item>
-        <item name="android:layout_height">63dp</item>
-        <item name="cornerRadius">25dp</item>
+        <item name="android:layout_width">@dimen/primary_btn_width</item>
+        <item name="android:layout_height">@dimen/primary_btn_height</item>
+        <item name="cornerRadius">@dimen/button_radius</item>
     </style>
 
     <style name="primaryTextStyle">

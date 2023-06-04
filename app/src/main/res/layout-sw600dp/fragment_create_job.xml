@@ -40,13 +40,14 @@
             style="@style/outlinedRoundedButtons"
             android:layout_width="match_parent"
             android:textColorHint="@color/black_variant"
+            android:layout_marginBottom="@dimen/padding_size_small2"
             app:endIconMode="clear_text"
             app:endIconTint="@color/black_variant">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/titleInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/input_field_height"
                 android:hint="@string/title"
                 android:inputType="text"
                 android:textColor="@color/black_variant" />
@@ -57,13 +58,14 @@
             style="@style/outlinedRoundedButtons"
             android:layout_width="match_parent"
             android:textColorHint="@color/black_variant"
+            android:layout_marginBottom="@dimen/padding_size_small2"
             app:endIconMode="clear_text"
             app:endIconTint="@color/black_variant">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/decriptionInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/input_field_height"
                 android:hint="@string/desc"
                 android:inputType="text"
                 android:textColor="@color/black_variant" />
@@ -74,13 +76,14 @@
             style="@style/outlinedRoundedButtons"
             android:layout_width="match_parent"
             android:textColorHint="@color/black_variant"
+            android:layout_marginBottom="@dimen/padding_size_small2"
             app:endIconMode="clear_text"
             app:endIconTint="@color/black_variant">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/skillsInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/input_field_height"
                 android:hint="@string/skills"
                 android:inputType="text"
                 android:textColor="@color/black_variant" />
@@ -91,13 +94,14 @@
             style="@style/outlinedRoundedButtons"
             android:layout_width="match_parent"
             android:textColorHint="@color/black_variant"
+            android:layout_marginBottom="@dimen/padding_size_small2"
             app:endIconMode="clear_text"
             app:endIconTint="@color/black_variant">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/locationInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/input_field_height"
                 android:hint="@string/location"
                 android:inputType="text"
                 android:textColor="@color/black_variant" />
@@ -114,7 +118,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/priceInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/input_field_height"
                 android:hint="@string/price"
                 android:inputType="text"
                 android:textColor="@color/black_variant" />

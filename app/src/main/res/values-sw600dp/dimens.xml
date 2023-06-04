@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_size_xsmall">4dp</dimen>
+    <dimen name="padding_size_small">8dp</dimen>
+    <dimen name="padding_size_small2">12dp</dimen>
+    <dimen name="padding_size_xmedium">22dp</dimen>
+    <dimen name="padding_size_medium">30dp</dimen>
+    <dimen name="padding_size_large">40dp</dimen>
+
+    <dimen name="text_size_small">15sp</dimen>
+    <dimen name="text_size_medium">25sp</dimen>
+    <dimen name="text_size_large">30sp</dimen>
+    <dimen name="text_size_xxlarge">50sp</dimen>
+
+    <dimen name="icon_size_small">20dp</dimen>
+    <dimen name="icon_size_medium">35dp</dimen>
+    <dimen name="icon_size_large">55dp</dimen>
+    <dimen name="icon_size_xxlarge">110dp</dimen>
+    <dimen name="icon_size_xxxlarge">150dp</dimen>
+
+    <dimen name="image_size_large">250dp</dimen>
+    <dimen name="image_size_xlarge">300dp</dimen>
+    <dimen name="image_size_xxlarge">400dp</dimen>
+
+    <dimen name="primary_btn_width">350dp</dimen>
+    <dimen name="primary_btn_height">80dp</dimen>
+    <dimen name="default_radius">25dp</dimen>
+    <dimen name="button_radius">30dp</dimen>
+    <dimen name="input_field_height">80dp</dimen>
+
+</resources>
+
+
+
+
