@@ -85,10 +85,11 @@ class CreateJobFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result != null) {
                 imageUri = result.data?.data
-
-                Glide.with(requireContext())
-                    .load(imageUri)
-                    .into(binding.image)
+                if (imageUri != null) {
+                    Glide.with(requireContext())
+                        .load(imageUri)
+                        .into(binding.image)
+                }
             }
         }
 

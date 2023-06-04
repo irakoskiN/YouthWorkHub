@@ -7,128 +7,135 @@
     android:background="@color/white_variant"
     tools:context=".ui.fragments.CreateJobFragment">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/create_job_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
     <ImageView
         android:id="@+id/image"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:src="@drawable/baseline_add_circle_24_blakc"
-        app:layout_constraintBottom_toTopOf="@+id/TitleLayout"
+        app:layout_constraintBottom_toTopOf="@+id/inputs_ll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@+id/create_job_guideline"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/TitleLayout"
+    <LinearLayout
+        android:id="@+id/inputs_ll"
         android:layout_width="match_parent"
-        style="@style/outlinedRoundedButtons"
-        android:textColorHint="@color/black_variant"
-        app:endIconMode="clear_text"
-        app:endIconTint="@color/black_variant"
-        app:layout_constraintBottom_toTopOf="@+id/decriptionLayout"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/postJob"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/titleInput"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/TitleLayout"
+            style="@style/outlinedRoundedButtons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/title"
-            android:inputType="text"
-            android:textColor="@color/black_variant" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textColorHint="@color/black_variant"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black_variant">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/decriptionLayout"
-        android:layout_width="match_parent"
-        style="@style/outlinedRoundedButtons"
-        android:textColorHint="@color/black_variant"
-        app:endIconMode="clear_text"
-        app:endIconTint="@color/black_variant"
-        app:layout_constraintBottom_toBottomOf="@+id/skillsLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitleLayout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/titleInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/title"
+                android:inputType="text"
+                android:textColor="@color/black_variant" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/decriptionInput"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/decriptionLayout"
+            style="@style/outlinedRoundedButtons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/desc"
-            android:inputType="text"
-            android:textColor="@color/black_variant" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textColorHint="@color/black_variant"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black_variant">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/skillsLayout"
-        android:layout_width="match_parent"
-        style="@style/outlinedRoundedButtons"
-        android:textColorHint="@color/black_variant"
-        app:endIconMode="clear_text"
-        app:endIconTint="@color/black_variant"
-        app:layout_constraintBottom_toBottomOf="@+id/locationLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/decriptionLayout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/decriptionInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/desc"
+                android:inputType="text"
+                android:textColor="@color/black_variant" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/skillsInput"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/skillsLayout"
+            style="@style/outlinedRoundedButtons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/skills"
-            android:inputType="text"
-            android:textColor="@color/black_variant" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textColorHint="@color/black_variant"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black_variant">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/locationLayout"
-        android:layout_width="match_parent"
-        style="@style/outlinedRoundedButtons"
-        android:textColorHint="@color/black_variant"
-        app:endIconMode="clear_text"
-        app:endIconTint="@color/black_variant"
-        app:layout_constraintBottom_toBottomOf="@+id/priceLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/skillsLayout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/skillsInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/skills"
+                android:inputType="text"
+                android:textColor="@color/black_variant" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/locationInput"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/locationLayout"
+            style="@style/outlinedRoundedButtons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/location"
-            android:inputType="text"
-            android:textColor="@color/black_variant" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textColorHint="@color/black_variant"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black_variant">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/priceLayout"
-        android:layout_width="match_parent"
-        style="@style/outlinedRoundedButtons"
-        android:textColorHint="@color/black_variant"
-        app:endIconMode="clear_text"
-        app:endIconTint="@color/black_variant"
-        app:layout_constraintBottom_toBottomOf="@+id/postJob"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationLayout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/locationInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/location"
+                android:inputType="text"
+                android:textColor="@color/black_variant" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/priceInput"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/priceLayout"
+            style="@style/outlinedRoundedButtons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/price"
-            android:inputType="text"
-            android:textColor="@color/black_variant" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textColorHint="@color/black_variant"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black_variant">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/priceInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/price"
+                android:inputType="text"
+                android:textColor="@color/black_variant" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/postJob"
         style="@style/primaryButtonStyle"
         android:text="@string/create_job"
-        app:layout_constraintBottom_toBottomOf="@+id/priceLayout"
+        app:layout_constraintBottom_toTopOf="@+id/create_job_guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/inputs_ll" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/create_job_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

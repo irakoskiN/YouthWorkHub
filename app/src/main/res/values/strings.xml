@@ -1,5 +1,8 @@
 <resources>
-    <string name="fb_client_id" translatable="false">891149307635-35bt3ff3n5bicl4oj9schs3hrs4mb7jb.apps.googleusercontent.com</string>
+    <string name="facebook_app_id" translatable="false">615878843792553</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb615878843792553</string>
+    <string name="facebook_client_token" translatable="false">48ce8d639258e5abc3fa4d0ce4c6e068</string>
+
     <string name="app_name">YouthWorkHub</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="find_side_hustle_title">Check out the easiest way to find a side hustle!</string>
@@ -32,4 +35,5 @@
     <string name="skills">Skills</string>
     <string name="location">Location</string>
     <string name="price">Price</string>
+    <string name="my_posts">My posts</string>
 </resources>
