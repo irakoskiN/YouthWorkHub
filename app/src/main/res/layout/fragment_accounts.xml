@@ -18,23 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/account_edit_cover_btn"
-        android:layout_width="@dimen/icon_size_large"
-        android:layout_height="@dimen/icon_size_large"
-        android:background="@drawable/circle_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="@dimen/icon_size_small"
-            android:src="@drawable/baseline_edit_24" />
-
-    </FrameLayout>
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/account_guideline"
         android:layout_width="wrap_content"
@@ -64,26 +47,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_iv">
 
-        <EditText
-            android:id="@+id/account_name"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/neutral_gray"
-            android:text="@string/name_surname"
-            android:textColor="@color/black_variant" />
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/account_first_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/neutral_gray"
+                android:textColorHint="@color/black_variant"
+                android:hint="@string/name"
+                android:layout_marginEnd="@dimen/padding_size_xsmall"
+                android:textColor="@color/black_variant" />
+
+            <EditText
+                android:id="@+id/account_last_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/black_variant"
+                android:backgroundTint="@color/neutral_gray"
+                android:layout_marginStart="@dimen/padding_size_xsmall"
+                android:hint="@string/surname"
+                android:textColor="@color/black_variant" />
+
+        </LinearLayout>
 
         <EditText
             android:id="@+id/account_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/black_variant"
             android:backgroundTint="@color/neutral_gray"
-            android:text="@string/username"
+            android:hint="@string/username"
             android:textColor="@color/black_variant" />
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/texView"
+        android:id="@+id/account_posts_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_size_small"
@@ -93,11 +96,21 @@
         app:layout_constraintTop_toBottomOf="@+id/main_ll" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/account_posts_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texView" />
+        app:layout_constraintTop_toBottomOf="@+id/account_posts_tv" />
+
+    <Button
+        android:id="@+id/account_save_btn"
+        style="@style/primaryButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

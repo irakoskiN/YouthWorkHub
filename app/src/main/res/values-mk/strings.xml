@@ -33,10 +33,15 @@
     <string name="location">Локација</string>
     <string name="price">Цена</string>
     <string name="my_posts">Мои огласи</string>
-    <string name="name_surname">Име Презима</string>
+    <string name="name">Име</string>
+    <string name="surname">Презиме</string>
     <string name="username">Корисничко име</string>
     <string name="yes">Да</string>
     <string name="no">Не</string>
     <string name="log_out">Одлогирај се</string>
     <string name="log_out_messege">Дали си сигурен дека сакаш да се одлогираш?</string>
+    <string name="save">Зачувај</string>
+    <string name="username_error">Корисничкото име не смее да биде празно!</string>
+    <string name="name_error">Името не смее да биде празно!</string>
+    <string name="surname_error">Презимето не смее да биде празно!</string>
 </resources>

@@ -97,8 +97,8 @@ class CreateJobFragment : Fragment() {
         return uri.path?.lastIndexOf('/')?.let { uri.path?.substring(it) }
     }
 
-    private fun saveJobInDb(image: String?){
-        val path = Firebase.firestore.collection("users").document(PreferencesManager.getUser().id)
+    private fun saveJobInDb(image: String?) {
+        val path = Firebase.firestore.collection("users").document(PreferencesManager.getUser().id!!)
         val createJobData = CreateJobModel(
             title = binding.titleInput.text.toString(),
             description = binding.decriptionInput.text.toString(),
@@ -112,7 +112,10 @@ class CreateJobFragment : Fragment() {
 
         Firebase.firestore.collection("job-posts").add(createJobData)
             .addOnSuccessListener { documentReference ->
-                Log.i("CreateJobTag", "DocumentSnapshot written with ID: ${documentReference.id}")
+                Log.i(
+                    "CreateJobTag",
+                    "DocumentSnapshot written with ID: ${documentReference.id}"
+                )
 //                    TODO open home fragment
 
             }

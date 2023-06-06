@@ -36,10 +36,15 @@
     <string name="location">Location</string>
     <string name="price">Price</string>
     <string name="my_posts">My posts</string>
-    <string name="name_surname">Name Surname</string>
+    <string name="name">Name</string>
+    <string name="surname"> Surname</string>
     <string name="username">Username</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="log_out">Log out</string>
     <string name="log_out_messege">Are you sure you want to log out?</string>
+    <string name="save">Save</string>
+    <string name="username_error">Username can\'t be empty!</string>
+    <string name="name_error">Name can\'t be empty!</string>
+    <string name="surname_error">Surname can\'t be empty!</string>
 </resources>

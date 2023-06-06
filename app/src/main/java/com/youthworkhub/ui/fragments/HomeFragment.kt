@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.youthworkhub.ui.adapter.JobsAdapter
@@ -39,7 +40,7 @@ class HomeFragment : Fragment() {
         val savedJobsIds = AppController.roomDb.savedJobDao().getIds()
         val allJobsList: MutableList<JobsModel> = mutableListOf()
 
-        Firebase.firestore.collection("job-posts").get()
+        Firebase.firestore.collection("job-posts").orderBy("timestamp", Query.Direction.DESCENDING).get()
             .addOnSuccessListener { jobsData ->
                 if (jobsData != null) {
                     Log.d("HomeFragmentTag", "jobsData: ${jobsData.size()}")
