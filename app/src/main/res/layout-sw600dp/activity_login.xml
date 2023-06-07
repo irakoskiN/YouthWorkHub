@@ -158,6 +158,19 @@
         app:layout_constraintStart_toEndOf="@+id/imageViewFacebook"
         app:layout_constraintTop_toBottomOf="@+id/textViewLoginSocial" />
 
+    <TextView
+        android:id="@+id/imageViewAnonymous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_size_small2"
+        android:textColor="@color/white"
+        android:text="@string/skip_login"
+        android:background="@drawable/rounded_bg"
+        app:layout_constraintBottom_toTopOf="@+id/textViewRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGoogle"/>
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="match_parent"

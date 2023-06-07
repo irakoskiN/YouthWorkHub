@@ -112,7 +112,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewGoogle" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewAnonymous" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -141,7 +141,7 @@
         android:layout_height="@dimen/icon_size_xxlarge"
         android:padding="@dimen/padding_size_small"
         android:src="@drawable/facebook_login_icon"
-        app:layout_constraintBottom_toTopOf="@+id/textViewRegister"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewAnonymous"
         app:layout_constraintEnd_toStartOf="@+id/imageViewGoogle"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -153,10 +153,23 @@
         android:layout_height="@dimen/icon_size_xxlarge"
         android:padding="@dimen/padding_size_small2"
         android:src="@drawable/google_login_icon"
-        app:layout_constraintBottom_toTopOf="@+id/textViewRegister"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewAnonymous"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewFacebook"
         app:layout_constraintTop_toBottomOf="@+id/textViewLoginSocial" />
+
+    <TextView
+        android:id="@+id/imageViewAnonymous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_size_small2"
+        android:textColor="@color/white"
+        android:text="@string/skip_login"
+        android:background="@drawable/rounded_bg"
+        app:layout_constraintBottom_toTopOf="@+id/textViewRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewGoogle" />
 
     <ImageView
         android:id="@+id/imageView4"

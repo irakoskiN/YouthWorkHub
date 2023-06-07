@@ -96,6 +96,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <ImageView
@@ -111,6 +112,15 @@
                 android:layout_height="@dimen/icon_size_xxlarge"
                 android:padding="@dimen/padding_size_small2"
                 android:src="@drawable/google_login_icon" />
+
+            <TextView
+                android:id="@+id/imageViewAnonymous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_size_small2"
+                android:textColor="@color/white"
+                android:text="@string/skip_login"
+                android:background="@drawable/rounded_bg" />
 
         </LinearLayout>
 

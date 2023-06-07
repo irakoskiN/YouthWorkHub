@@ -45,6 +45,7 @@
                 android:id="@+id/usernameLayout"
                 style="@style/outlinedRoundedButtons"
                 android:layout_width="wrap_content"
+                app:endIconTint="@color/black_variant"
                 android:textColorHint="@color/black_variant"
                 app:endIconMode="clear_text">
 
@@ -60,6 +61,7 @@
                 android:id="@+id/emailLayout"
                 style="@style/outlinedRoundedButtons"
                 android:layout_width="wrap_content"
+                app:endIconTint="@color/black_variant"
                 android:textColorHint="@color/black_variant"
                 app:endIconMode="clear_text">
 

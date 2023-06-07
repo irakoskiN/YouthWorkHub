@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.IntentSender
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
 import com.facebook.login.LoginManager
@@ -18,6 +19,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.youthworkhub.R
 import com.youthworkhub.databinding.ActivityLoginBinding
 import com.youthworkhub.model.UserModel
 import com.youthworkhub.utils.Helpers
@@ -181,6 +183,8 @@ class LoginActivity : AppCompatActivity() {
 
             if (email.isNotEmpty() && pass.isNotEmpty()) {
                 login(email, pass)
+            } else {
+                Toast.makeText(applicationContext, R.string.login_error, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -192,6 +196,10 @@ class LoginActivity : AppCompatActivity() {
             LoginManager.getInstance().logOut()
             LoginManager.getInstance()
                 .logInWithReadPermissions(this, callbackManager, listOf("public_profile", "email"))
+        }
+
+        binding.imageViewAnonymous.setOnClickListener {
+            anonymousLogin()
         }
     }
 
@@ -296,5 +304,28 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
         request.executeAsync()
+    }
+
+    private fun anonymousLogin() {
+        auth.signInAnonymously()
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("anonymousLogin", "signInAnonymously:success")
+                    val user = auth.currentUser
+                    Log.d("anonymousLogin", "user:success "+user?.uid)
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("anonymousLogin", "signInAnonymously:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            }
     }
 }

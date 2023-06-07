@@ -43,6 +43,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/usernameLayout"
                 style="@style/outlinedRoundedButtons"
+                app:endIconTint="@color/black_variant"
                 android:layout_width="wrap_content"
                 android:textColorHint="@color/black_variant"
                 app:endIconMode="clear_text">
@@ -59,6 +60,7 @@
                 android:id="@+id/emailLayout"
                 style="@style/outlinedRoundedButtons"
                 android:layout_width="wrap_content"
+                app:endIconTint="@color/black_variant"
                 android:textColorHint="@color/black_variant"
                 app:endIconMode="clear_text">
 

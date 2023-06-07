@@ -53,6 +53,7 @@
         android:paddingHorizontal="@dimen/padding_size_medium"
         android:textColorHint="@color/black_variant"
         app:endIconMode="clear_text"
+        app:endIconTint="@color/black_variant"
         app:layout_constraintBottom_toTopOf="@+id/emailLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +64,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/prompt_username"
+            android:inputType="text"
+            android:maxLength="35"
             android:textColor="@color/black_variant" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,6 +75,7 @@
         android:paddingHorizontal="@dimen/padding_size_medium"
         android:textColorHint="@color/black_variant"
         app:endIconMode="clear_text"
+        app:endIconTint="@color/black_variant"
         app:layout_constraintBottom_toTopOf="@+id/passwordLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -165,6 +169,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

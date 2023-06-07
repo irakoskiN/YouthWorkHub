@@ -6,4 +6,5 @@ object Constants {
     const val USER_MODEL = "user_model"
     const val NOTIFICATION_TITLE = "notification_intent_title"
     const val NOTIFICATION_MESSAGE = "notification_intent_message"
+    const val HOME_FRAGMENT = "home_fragment"
 }

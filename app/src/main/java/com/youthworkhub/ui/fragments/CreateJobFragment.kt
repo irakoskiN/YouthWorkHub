@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.ktx.firestore
@@ -20,7 +22,9 @@ import com.youthworkhub.R
 import com.youthworkhub.databinding.FragmentCreateJobBinding
 import com.youthworkhub.model.CreateJobModel
 import com.youthworkhub.ui.activity.MainActivity
+import com.youthworkhub.utils.Constants
 import com.youthworkhub.utils.PreferencesManager
+import com.youthworkhub.viewmodel.MainViewModel
 import java.net.URL
 
 class CreateJobFragment : Fragment() {
@@ -28,6 +32,8 @@ class CreateJobFragment : Fragment() {
     private var _binding: FragmentCreateJobBinding? = null
     private val binding get() = _binding!!
     var imageUri: Uri? = null
+    private lateinit var mainViewModel: MainViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +45,9 @@ class CreateJobFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
+
         setupButtonClicks()
     }
 
@@ -98,29 +107,41 @@ class CreateJobFragment : Fragment() {
     }
 
     private fun saveJobInDb(image: String?) {
-        val path = Firebase.firestore.collection("users").document(PreferencesManager.getUser().id!!)
-        val createJobData = CreateJobModel(
-            title = binding.titleInput.text.toString(),
-            description = binding.decriptionInput.text.toString(),
-            skills = binding.skillsInput.text.toString(),
-            timestamp = System.currentTimeMillis(),
-            owner = path,
-            price = binding.priceInput.text.toString(),
-            location = binding.locationInput.text.toString(),
-            image = image
-        )
+        val user = PreferencesManager.getUser()
 
-        Firebase.firestore.collection("job-posts").add(createJobData)
-            .addOnSuccessListener { documentReference ->
-                Log.i(
-                    "CreateJobTag",
-                    "DocumentSnapshot written with ID: ${documentReference.id}"
-                )
-//                    TODO open home fragment
+        if (user != null) {
+            val path =
+                Firebase.firestore.collection("users").document(user.id)
+            val createJobData = CreateJobModel(
+                title = binding.titleInput.text.toString(),
+                description = binding.decriptionInput.text.toString(),
+                skills = binding.skillsInput.text.toString(),
+                timestamp = System.currentTimeMillis(),
+                owner = path,
+                price = binding.priceInput.text.toString(),
+                location = binding.locationInput.text.toString(),
+                image = image
+            )
 
-            }
-            .addOnFailureListener { e ->
-                Log.e("CreateJobTag", "Error adding document", e)
-            }
+            Firebase.firestore.collection("job-posts").add(createJobData)
+                .addOnSuccessListener { documentReference ->
+                    Log.i(
+                        "CreateJobTag",
+                        "DocumentSnapshot written with ID: ${documentReference.id}"
+                    )
+
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.success_job_created,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    mainViewModel.switchFragment(Constants.HOME_FRAGMENT)
+
+                }
+                .addOnFailureListener { e ->
+                    Log.e("CreateJobTag", "Error adding document", e)
+                }
+        }
     }
 }

@@ -48,23 +48,23 @@ class AccountFragment : Fragment() {
 
     private fun setupUserInfo() {
         val user = PreferencesManager.getUser()
+        if (user != null) {
+            if (!user.image.isNullOrEmpty()) {
+                Glide.with(requireContext()).load(user.image).into(binding.accountIv)
+            }
 
-        if (!user.image.isNullOrEmpty()) {
-            Glide.with(requireContext()).load(user.image).into(binding.accountIv)
+            if (!user.firstname.isNullOrEmpty()) {
+                binding.accountFirstName.setText(user.firstname)
+            }
+
+            if (!user.lastname.isNullOrEmpty()) {
+                binding.accountLastName.setText(user.lastname)
+            }
+
+            if (user.username.isNotEmpty()) {
+                binding.accountUsername.setText(user.username)
+            }
         }
-
-        if (!user.firstname.isNullOrEmpty()) {
-            binding.accountFirstName.setText(user.firstname)
-        }
-
-        if (!user.lastname.isNullOrEmpty()) {
-            binding.accountLastName.setText(user.lastname)
-        }
-
-        if (user.username.isNotEmpty()) {
-            binding.accountUsername.setText(user.username)
-        }
-
     }
 
     private fun setupClicks() {
@@ -94,27 +94,41 @@ class AccountFragment : Fragment() {
                 img = imageUri.toString()
             }
 
+            //todo save img
+
             val updateUserData: MutableMap<String, Any> = mutableMapOf()
             updateUserData["username"] = binding.accountUsername.text.toString()
             updateUserData["firstname"] = binding.accountFirstName.text.toString()
             updateUserData["lastname"] = binding.accountLastName.text.toString()
 
-            Firebase.firestore.collection("users").document(usr.id).update(updateUserData)
-                .addOnSuccessListener {
-                    Log.d("UPDATE", "DocumentSnapshot successfully written!")
+            if (usr != null) {
 
-                    val user = UserModel(
-                        usr.id,
-                        usr.email,
-                        binding.accountUsername.text.toString(),
-                        binding.accountFirstName.text.toString(),
-                        binding.accountLastName.text.toString(),
-                    )
-                    PreferencesManager.putUser(user)
-                }
-                .addOnFailureListener { e -> Log.w("UPDATE", "Error writing document", e) }
+                Firebase.firestore.collection("users").document(usr.id).update(updateUserData)
+                    .addOnSuccessListener {
+                        Log.d("UPDATE", "DocumentSnapshot successfully written!")
 
+                        val user = UserModel(
+                            usr.id,
+                            usr.email,
+                            binding.accountUsername.text.toString(),
+                            binding.accountFirstName.text.toString(),
+                            binding.accountLastName.text.toString(),
+                        )
+                        PreferencesManager.putUser(user)
 
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.update_success,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("UPDATE", "Error writing document", e)
+                        Toast.makeText(requireContext(), R.string.update_failed, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+            }
         }
     }
 
@@ -133,42 +147,46 @@ class AccountFragment : Fragment() {
     private fun getJobs() {
         val savedJobsIds = AppController.roomDb.savedJobDao().getIds()
         val jobsList: MutableList<JobsModel> = mutableListOf()
-        val path = Firebase.firestore.collection("users").document(PreferencesManager.getUser().id)
+        val user = PreferencesManager.getUser()
 
-        Firebase.firestore.collection("job-posts").whereEqualTo("owner", path).get()
-            .addOnSuccessListener { jobsData ->
-                if (jobsData != null) {
-                    Log.d("AccountFragment", "jobsData: ${jobsData.size()}")
+        if (user != null) {
+            val path = Firebase.firestore.collection("users").document(user.id)
 
-                    jobsData.forEachIndexed { index, jobData ->
-                        val objData = JobsModel(
-                            id = jobData.id,
-                            location = jobData.data["location"].toString(),
-                            skills = jobData.data["skills"].toString(),
-                            title = jobData.data["title"].toString(),
-                            price = jobData.data["price"].toString(),
-                            timestamp = jobData.data["timestamp"] as Long?,
-                            description = jobData.data["description"].toString(),
-                            owner = null,
-                            image = jobData.data["image"].toString(),
-                            saved = savedJobsIds.contains(jobData.id)
-                        )
-                        Log.d("AccountFragment", "${jobData.id} => $objData")
-                        jobsList.add(objData)
+            Firebase.firestore.collection("job-posts").whereEqualTo("owner", path).get()
+                .addOnSuccessListener { jobsData ->
+                    if (jobsData != null) {
+                        Log.d("AccountFragment", "jobsData: ${jobsData.size()}")
 
-                        if (index == jobsData.size() - 1) {
-                            populatePosts(jobsList)
+                        jobsData.forEachIndexed { index, jobData ->
+                            val objData = JobsModel(
+                                id = jobData.id,
+                                location = jobData.data["location"].toString(),
+                                skills = jobData.data["skills"].toString(),
+                                title = jobData.data["title"].toString(),
+                                price = jobData.data["price"].toString(),
+                                timestamp = jobData.data["timestamp"] as Long?,
+                                description = jobData.data["description"].toString(),
+                                owner = null,
+                                image = jobData.data["image"].toString(),
+                                saved = savedJobsIds.contains(jobData.id)
+                            )
+                            Log.d("AccountFragment", "${jobData.id} => $objData")
+                            jobsList.add(objData)
+
+                            if (index == jobsData.size() - 1) {
+                                populatePosts(jobsList)
+                            }
                         }
+
+                    } else {
+                        Log.d("AccountFragment", "jobs are null")
                     }
-
-                } else {
-                    Log.d("AccountFragment", "jobs are null")
                 }
-            }
 
-            .addOnFailureListener { exception ->
-                Log.w("AccountFragment", "Error getting jobs: ", exception)
-            }
+                .addOnFailureListener { exception ->
+                    Log.w("AccountFragment", "Error getting jobs: ", exception)
+                }
+        }
 
     }
 

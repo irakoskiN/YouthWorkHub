@@ -47,4 +47,13 @@
     <string name="username_error">Username can\'t be empty!</string>
     <string name="name_error">Name can\'t be empty!</string>
     <string name="surname_error">Surname can\'t be empty!</string>
+    <string name="update_success">"Successfully updated account!"</string>
+    <string name="update_failed">"Failed to update account!"</string>
+    <string name="login_error">Email or password can not be empty.</string>
+    <string name="email_error">Email can not be empty.</string>
+    <string name="pass_error">Password can not be empty.</string>
+    <string name="confirm_pass_error">Passwords do not match.</string>
+    <string name="success_job_created">Job created successfully!</string>
+    <string name="skip_login">Skip login</string>
+    <string name="create_account">Please create an account to open this screen.</string>
 </resources>

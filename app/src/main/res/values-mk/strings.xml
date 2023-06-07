@@ -44,4 +44,13 @@
     <string name="username_error">Корисничкото име не смее да биде празно!</string>
     <string name="name_error">Името не смее да биде празно!</string>
     <string name="surname_error">Презимето не смее да биде празно!</string>
+    <string name="update_success">"Успешно ажуриран профил!"</string>
+    <string name="update_failed">"Не успешно ажуриран профил!"</string>
+    <string name="login_error">Емаил-от и пасвордот не смеат да бидат празни.</string>
+    <string name="email_error">Емаил-от не смее да е празен.</string>
+    <string name="pass_error">Пасвордот не смее да е празен.</string>
+    <string name="confirm_pass_error">Пасвордите не се софпаѓаат.</string>
+    <string name="success_job_created">Вашиот офлас е креиран.</string>
+    <string name="skip_login">Прескокни логирање.</string>
+    <string name="create_account">Креирајте профил за да го отворите овој фрагмент.</string>
 </resources>
