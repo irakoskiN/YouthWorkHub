@@ -28,6 +28,6 @@ object PreferencesManager {
     }
 
     fun logout() {
-        AppController.sharedPreferences.edit().clear().apply()
+        AppController.sharedPreferences.edit().remove(Constants.USER_MODEL).apply()
     }
 }

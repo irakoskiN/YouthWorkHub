@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -45,8 +46,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        user = PreferencesManager.getUser()
 
+        Log.d("LoginTAG", "SHARED data: ${user}")
         requestNotificationPermission()
         setupMainNav()
         setViewModelListeners()
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupMainNav() {
         binding.mainBottomNav.selectedItemId = R.id.item_home
         binding.mainBottomNav.setOnItemSelectedListener {
-
+            user = PreferencesManager.getUser()
             when (it.itemId) {
                 R.id.item_home -> {
                     openFragment(R.id.nav_item_home)

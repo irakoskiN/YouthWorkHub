@@ -213,6 +213,7 @@ class LoginActivity : AppCompatActivity() {
                             if (document != null) {
                                 Log.d("LoginTAG", "DocumentSnapshot data: ${document.data}")
                                 val userData = Helpers.parseFbUserToUserModal(document.data)
+                                Log.d("LoginTAG", "DocumentSnapshot data: ${userData}")
                                 if (userData != null) {
                                     PreferencesManager.putUser(userData)
                                 }
